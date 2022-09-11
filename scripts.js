@@ -59,15 +59,19 @@ function game() {
         let computerSelection = getComputerChoice();
         let round = playRound(playerSelection, computerSelection);
         console.log(round);
-        if(round === 'You Win! Paper beats Rock' || round === 'You Win! Rock beats Scissors' || round === 'You Win! Scissors beats Paper') {
+        if(round === 'You Win! Paper beats Rock' ||
+         round === 'You Win! Rock beats Scissors' ||
+         round === 'You Win! Scissors beats Paper') {
             playerScore += 1;
         } else {
             computerScore += 1;
         };
     };
     if (playerScore > computerScore) {
-        return `You Win! Your score: ${playerScore}, Computer score: ${computerScore}`;
+        return `You Win! Your score: ${playerScore},
+         Computer score: ${computerScore}`;
     } else {
-        return `You Lose! Your score: ${playerScore}, Computer score: ${computerScore}`;
+        return `You Lose! Your score: ${playerScore},
+         Computer score: ${computerScore}`;
     };
 };
