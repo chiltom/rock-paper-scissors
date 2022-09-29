@@ -1,21 +1,6 @@
-/* Pseudocode
+// Game of Rock Paper Scissors with a UI
 
-- Begin with function getComputerChoice() that takes an array
-['Rock', 'Paper', 'Scissors'] and selects one of the choices at random.
-- Follow up with a function capitalize(string) that will take string input
-(the user's) and capitalize the first letter and lowercase the rest.
-- Write a function playRound(playerSelection, computerSelection) that takes
-the user's input and compares it against the computer's selection. The function
-will return a string letting the user know if they won, the computer won, or
-they entered an invalid string.
-- Write a function game() that calls the playRound function multiple times and
-keeps a score, reporting/returning if the user is a winner or loser in the end.
-This is the culmination of the program, and what is ultimately run with a prompt
-to gather input from the user.
-
-*/
-
-// Gathering computer's choice
+// Computer choice
 function getComputerChoice() {
     const choices = ['Rock', 'Paper', 'Scissors'];
     const random = Math.floor(Math.random() * choices.length);
@@ -28,9 +13,9 @@ function capitalize(string) {
 };
 
 // Playing a round
-function playRound(playerSelection, computerSelection) {
+function playRound(playerSelection) {
     let pS = capitalize(playerSelection);
-    let cS = computerSelection
+    let cS = getComputerChoice();
     if (pS === 'Rock' && cS === 'Paper') {
         return 'You Lose! Paper beats Rock';
     } else if (pS === 'Paper' && cS === 'Rock') {
@@ -50,7 +35,44 @@ function playRound(playerSelection, computerSelection) {
     }
 };
 
+// Interactive buttons
+let playerScore = 0;
+let computerScore = 0;
+const results = document.querySelector('.results');
+const content = document.createElement('div');
+    content.classList.add('content');
+const scores = document.createElement('div');
+    scores.classList.add('scores');
+const winner = document.createElement('div');
+    winner.classList.add('winner');
+const buttons = document.querySelectorAll('button');
+buttons.forEach(button => {
+    button.addEventListener('click', (e) => {
+        let result = playRound(e.target.id);
+        content.textContent = `${result}`;
+        results.appendChild(content);
+        if(result === 'You Win! Paper beats Rock' ||
+            result === 'You Win! Rock beats Scissors' ||
+            result === 'You Win! Scissors beats Paper') {
+                playerScore += 1;
+            } else {
+            computerScore += 1;
+            };
+        scores.textContent = `Your Score: ${playerScore}. Computer Score: ${computerScore}`;
+        results.appendChild(scores);
+        if (playerScore === 5) {
+            winner.textContent = `You Won! Your Score: ${playerScore}. Computer Score: ${computerScore}`;
+            results.appendChild(winner);
+        } else if (computerScore === 5) {
+            winner.textContent = `You Lost. Your Score: ${playerScore}. Computer Score: ${computerScore}`;
+            results.appendChild(winner);
+        }
+    })
+});
+
+
 // Playing a game
+/*
 function game() {
     let playerScore = 0;
     let computerScore = 0;
@@ -75,3 +97,4 @@ function game() {
          Computer score: ${computerScore}`;
     };
 };
+*/
