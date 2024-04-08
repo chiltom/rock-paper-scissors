@@ -1,6 +1,6 @@
-# rock-paper-scissors
-Rock-Paper-Scissors project from TOP
+# Rock, Paper, Scissor
+Start project from The Odin Project
 
-This first iteration of the project will be played completely from the console.
+## Use
+To play the game, simply run the *.js file with node and interact with the terminal!
 
-Later, a GUI will be added for user-friendliness.
